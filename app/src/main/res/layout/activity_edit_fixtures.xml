@@ -102,6 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/ChangeName1"
         android:layout_alignTop="@+id/textView2"
+        android:onClick="ChangeIcon1"
         android:text="choose" />
 
     <TextView
@@ -119,5 +120,6 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/ChangeName1"
         android:layout_alignTop="@+id/textView"
+        android:onClick="ChangeIcon2"
         android:text="choose" />
 </RelativeLayout>

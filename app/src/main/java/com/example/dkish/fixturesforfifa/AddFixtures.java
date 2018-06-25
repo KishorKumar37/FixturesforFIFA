@@ -24,7 +24,7 @@ public class AddFixtures extends AppCompatActivity {
     Fixtures TemporaryFixture3;
     Button GiveIcon1;
     Button GiveIcon2;
-    Image im_image;
+    ImageView im_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +35,14 @@ public class AddFixtures extends AppCompatActivity {
 
     }
 
-    public void AssignIcon1(){
+    public void AssignIcon1(View view){
+        im_image = findViewById(R.id.icon1);
         Selection();
-        ImageView im_image = findViewById(R.id.icon1);
+
+    }
+    public void AssignIcon2(View view){
+        im_image = findViewById(R.id.icon2);
+        Selection();
 
     }
 

@@ -1,13 +1,17 @@
 package com.example.dkish.fixturesforfifa;
 
+import android.graphics.Bitmap;
+
+import java.net.URI;
 import java.util.Date;
 
-public class Fixtures {
+public class Fixture {
     String date;
     String name1 , name2 , venue;
-    int image1 , image2;
+    Bitmap image1;
+    Bitmap image2;
 
-    public Fixtures(){ //Constructor for the class
+    public Fixture(){ //Constructor for the class
         this.date = date;
         this.name1= name1;
         this.name2= name2;
@@ -28,10 +32,10 @@ public class Fixtures {
     public String returnVenue(){
         return(venue);
     }
-    public int returnIcon1(){
+    public Bitmap returnIcon1(){
         return(image1);
     }
-    public int returnIcon2(){
+    public Bitmap returnIcon2(){
         return(image2);
     }
 

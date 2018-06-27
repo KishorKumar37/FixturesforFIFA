@@ -1,7 +1,6 @@
 package com.example.dkish.fixturesforfifa;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -14,8 +13,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class myadapter extends ArrayAdapter<Fixtures> {
-    List<Fixtures> teamList;
+public class myadapter extends ArrayAdapter<Fixture> {
+    List<Fixture> teamList;
 
     Context context;
 
@@ -26,7 +25,7 @@ public class myadapter extends ArrayAdapter<Fixtures> {
 
 
 
-    public myadapter(Context context , int Resource , List<Fixtures> teamList){  //Constructor
+    public myadapter(Context context , int Resource , List<Fixture> teamList){  //Constructor
         super(context,Resource,teamList);
         this.context = context;
         this.Resource = Resource;
@@ -39,7 +38,7 @@ public class myadapter extends ArrayAdapter<Fixtures> {
         View view = builder.inflate(Resource ,null , false);
 
         ImageView icon1 = view.findViewById(R.id.icon1);
-        ImageView icon2 = view.findViewById(R.id.team2);
+        ImageView icon2 = view.findViewById(R.id.icon2);
 
         TextView team1 = view.findViewById(R.id.team1);
         TextView team2 = view.findViewById(R.id.team2);
@@ -51,10 +50,10 @@ public class myadapter extends ArrayAdapter<Fixtures> {
         Button edit = view.findViewById(R.id.edit);
 
 
-        Fixtures fixtures = teamList.get(position);//This is a separate list to be used by the custom adapter only
+        Fixture fixtures = teamList.get(position);//This is a separate list to be used by the custom adapter only
 
-        icon1.setImageDrawable(context.getResources().getDrawable(fixtures.returnIcon1()));
-        icon2.setImageDrawable(context.getResources().getDrawable(fixtures.returnIcon2()));
+        icon1.setImageBitmap(fixtures.returnIcon1());
+        icon2.setImageBitmap(fixtures.returnIcon2());
 
         team1.setText(fixtures.returnName1());
         team2.setText(fixtures.returnName2());

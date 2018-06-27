@@ -8,7 +8,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
-import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
@@ -20,8 +19,9 @@ import android.widget.ImageView;
 import java.io.File;
 
 public class EditFixtures extends AppCompatActivity {
-    Fixtures TemporaryFixture3;
+    Fixture TemporaryFixture3;
     ImageView im_image2;
+    Bitmap bitmap;
 
 
 
@@ -34,7 +34,7 @@ public class EditFixtures extends AppCompatActivity {
 
 
 
-    public void EditFixture(Fixtures TemporaryFixture2 ){   //Receives the temp object from PassToEditFixture function in FixturesView Activity and assigns it to one of it's own variables
+    public void EditFixture(Fixture TemporaryFixture2 ){   //Receives the temp object from PassToEditFixture function in FixturesView Activity and assigns it to one of it's own variables
         TemporaryFixture3=TemporaryFixture2;
     }
                                                             //Separate buttons for each Edit so that the user can choose what to Edit
@@ -55,13 +55,13 @@ public class EditFixtures extends AppCompatActivity {
         TemporaryFixture3.venue = NewVenue.getText().toString();
     }
     public void ChangeIcon1(View view){
-        im_image2 = findViewById(R.id.icon1);
         Selection();
+        TemporaryFixture3.image1 = bitmap;
 
     }
     public void ChangeIcon2(View view){
-        im_image2 = findViewById(R.id.icon2);
         Selection();
+        TemporaryFixture3.image2 = bitmap;
 
     }
 
@@ -101,13 +101,13 @@ public class EditFixtures extends AppCompatActivity {
                     }
                 }
                 try {
-                    Bitmap bitmap;
+
                     BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
 
                     bitmap = BitmapFactory.decodeFile(TempImage.getAbsolutePath(),
                             bitmapOptions);
 
-                    im_image2.setImageBitmap(bitmap);
+
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -121,8 +121,8 @@ public class EditFixtures extends AppCompatActivity {
                 int columnIndex = c.getColumnIndex(filePath[0]);
                 String picturePath = c.getString(columnIndex);
                 c.close();
-                Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
-                im_image2.setImageBitmap(thumbnail);
+                Bitmap bitmap = (BitmapFactory.decodeFile(picturePath));
+
             }
         }
     }

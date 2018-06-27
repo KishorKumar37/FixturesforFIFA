@@ -6,25 +6,28 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+
 
 import java.io.File;
 
+
 public class AddFixtures extends AppCompatActivity {
 
-    Fixtures TemporaryFixture3;
+    Fixture TemporaryFixture3;
     Button GiveIcon1;
     Button GiveIcon2;
-    ImageView im_image;
+
+    Bitmap bitmap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +36,18 @@ public class AddFixtures extends AppCompatActivity {
         GiveIcon1 = findViewById(R.id.GiveIcon1);
         GiveIcon2 = findViewById(R.id.GiveIcon2);
 
+
     }
 
     public void AssignIcon1(View view){
-        im_image = findViewById(R.id.icon1);
         Selection();
+        TemporaryFixture3.image1 = bitmap;
 
     }
     public void AssignIcon2(View view){
-        im_image = findViewById(R.id.icon2);
         Selection();
+        TemporaryFixture3.image2 = bitmap;
+
 
     }
 
@@ -57,8 +62,8 @@ public class AddFixtures extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 if(Options[i]=="Camera"){
                     Intent OpenCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    File TempImage = new File(Environment.getExternalStorageDirectory(),"icon1.jpg");
-                    OpenCamera.putExtra(MediaStore.EXTRA_OUTPUT , Uri.fromFile(TempImage));
+                    File TempImage = new File(Environment.getExternalStorageDirectory(),"icon.jpg");
+                    OpenCamera.putExtra(MediaStore.EXTRA_OUTPUT , FileProvider.getUriForFile(getApplicationContext(), getPackageName()+".fileprovider", TempImage));
                     startActivityForResult(OpenCamera , 1);
                 }
                 else{
@@ -76,19 +81,19 @@ public class AddFixtures extends AppCompatActivity {
             if (requestCode == 1) {
                 File f = new File(Environment.getExternalStorageDirectory().toString());
                 for (File temp : f.listFiles()) {
-                    if (temp.getName().equals("codesfor.jpg")) {
+                    if (temp.getName().equals("icon.jpg")) {
                         f = temp;
                         break;
                     }
                 }
                 try {
-                    Bitmap bitmap;
+
+
                     BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
 
                     bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
                             bitmapOptions);
 
-                    im_image.setImageBitmap(bitmap);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -96,14 +101,15 @@ public class AddFixtures extends AppCompatActivity {
             } else if (requestCode == 2) {
 
                 Uri selectedImage = data.getData();
-                String[] filePath = { MediaStore.Images.Media.DATA };
-                Cursor c = getContentResolver().query(selectedImage,filePath, null, null, null);
+                String[] filePath = {MediaStore.Images.Media.DATA};
+                Cursor c = getContentResolver().query(selectedImage, filePath, null, null, null);
                 c.moveToFirst();
                 int columnIndex = c.getColumnIndex(filePath[0]);
                 String picturePath = c.getString(columnIndex);
                 c.close();
-                Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
-                im_image.setImageBitmap(thumbnail);
+                bitmap = (BitmapFactory.decodeFile(picturePath));
+
+
             }
         }
     }
@@ -111,8 +117,7 @@ public class AddFixtures extends AppCompatActivity {
 
 
 
-
-    public  void AddFixture( ){            //This function assigns the new values to corresponding variables and sends the object to FixturesView to get added to list
+    public  void AddFixture(){            //This function assigns the new values to corresponding variables and sends the object to FixturesView to get added to list
         EditText NewName1 = findViewById(R.id.AssignName1);
         TemporaryFixture3.name1 = NewName1.getText().toString();
 

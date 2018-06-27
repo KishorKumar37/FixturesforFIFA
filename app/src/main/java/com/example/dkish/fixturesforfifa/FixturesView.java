@@ -4,16 +4,20 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FixturesView extends AppCompatActivity {
-    List<Fixtures> FixturesList; //The main List of objects containing the parameters for the custom list view
+    List<Fixture> FixturesList; //The main List of objects containing the parameters for the custom list view
 
     ListView List;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +33,10 @@ public class FixturesView extends AppCompatActivity {
 
         List.setAdapter(CustomAdapter); //Assigning the custom made List View adapter of the main list to the list view in FixturesView
     }
+
     public void PassToEditFixture(final int position){              //This function receives the position from a function in the custom adapter class
                                                                     //Passing an object which is equivalent to the object at that position in the list
-        Fixtures TemporaryFixture1 = FixturesList.get(position);  //Assigning the values of the object at that position to a temporary object
+        Fixture TemporaryFixture1 = FixturesList.get(position);  //Assigning the values of the object at that position to a temporary object
 
         Intent StartEditFixtures = new Intent(FixturesView.this , EditFixtures.class);
         startActivity(StartEditFixtures); //Starts the EditFixtures Activity
@@ -41,10 +46,12 @@ public class FixturesView extends AppCompatActivity {
 
 
     }
-    public void ReceiveFromAddFixture(Fixtures TemporaryFixture2){
+    public void ReceiveFromAddFixture(Fixture TemporaryFixture2){
 
         FixturesList.add(TemporaryFixture2);
     }
+
+
 
 
 

@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import java.io.File;
 
 public class EditFixtures extends AppCompatActivity {
-    Fixture TemporaryFixture3;
+    Fixture TemporaryFixture3 = new Fixture();
     ImageView im_image2;
     Bitmap bitmap;
 

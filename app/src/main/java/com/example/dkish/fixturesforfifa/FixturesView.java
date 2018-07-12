@@ -48,7 +48,9 @@ public class FixturesView extends AppCompatActivity {
     }
     public void ReceiveFromAddFixture(Fixture TemporaryFixture2){
 
+
         FixturesList.add(TemporaryFixture2);
+
     }
 
 

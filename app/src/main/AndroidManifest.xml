@@ -31,7 +31,7 @@
         </activity>
         <activity android:name=".FixturesView" android:label="Fixtures" />
         <activity android:name=".AddFixtures" />
-        <activity android:name=".EditFixtures"></activity>
+        <activity android:name=".EditFixtures"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

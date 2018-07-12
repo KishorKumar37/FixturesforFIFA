@@ -36,6 +36,8 @@ public class AddFixtures extends AppCompatActivity {
         GiveIcon1 = findViewById(R.id.GiveIcon1);
         GiveIcon2 = findViewById(R.id.GiveIcon2);
 
+        TemporaryFixture3 =  new Fixture();
+
 
     }
 
@@ -63,7 +65,7 @@ public class AddFixtures extends AppCompatActivity {
                 if(Options[i]=="Camera"){
                     Intent OpenCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     File TempImage = new File(Environment.getExternalStorageDirectory(),"icon.jpg");
-                    OpenCamera.putExtra(MediaStore.EXTRA_OUTPUT , FileProvider.getUriForFile(getApplicationContext(), getPackageName()+".fileprovider", TempImage));
+                    OpenCamera.putExtra(MediaStore.EXTRA_OUTPUT , FileProvider.getUriForFile(getApplicationContext(), getPackageName()+".FileProvider", TempImage));
                     startActivityForResult(OpenCamera , 1);
                 }
                 else{
@@ -117,7 +119,7 @@ public class AddFixtures extends AppCompatActivity {
 
 
 
-    public  void AddFixture(){            //This function assigns the new values to corresponding variables and sends the object to FixturesView to get added to list
+    public  void AddFixture(View view){            //This function assigns the new values to corresponding variables and sends the object to FixturesView to get added to list
         EditText NewName1 = findViewById(R.id.AssignName1);
         TemporaryFixture3.name1 = NewName1.getText().toString();
 

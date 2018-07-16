@@ -20,22 +20,20 @@
         android:theme="@style/AppTheme">
 
 
-        <activity android:name=".MenuActivity"
-            android:label="Menu">
+        <activity
+            android:name=".FixturesView"
+            android:label="Fixtures">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </intent-filter>
         </activity>
-        <activity android:name=".FixturesView" android:label="Fixtures" />
-        <activity android:name=".AddFixtures" />
-        <activity android:name=".EditFixtures"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="${applicationId}.provider"
+            android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

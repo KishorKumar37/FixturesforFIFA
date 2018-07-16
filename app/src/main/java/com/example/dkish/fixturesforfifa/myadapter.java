@@ -3,11 +3,13 @@ package com.example.dkish.fixturesforfifa;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -52,8 +54,8 @@ public class myadapter extends ArrayAdapter<Fixture> {
 
         Fixture fixtures = teamList.get(position);//This is a separate list to be used by the custom adapter only
 
-        icon1.setImageBitmap(fixtures.returnIcon1());
-        icon2.setImageBitmap(fixtures.returnIcon2());
+        icon1.setImageURI(fixtures.returnIcon1());
+        icon2.setImageURI(fixtures.returnIcon2());
 
         team1.setText(fixtures.returnName1());
         team2.setText(fixtures.returnName2());
@@ -73,14 +75,13 @@ public class myadapter extends ArrayAdapter<Fixture> {
 
         });
 
-        edit.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                FixturesView Temp = new FixturesView();
-                Temp.PassToEditFixture(position);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
             }
-
         });
+
 
 
 
